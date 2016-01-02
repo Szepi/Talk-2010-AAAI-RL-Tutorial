@@ -1,0 +1,41 @@
+What's Included?
+----------------------
+- tutorial??.tex
+	the main body of the tutorials included by the files mentioned next
+- tutorial??-slidesonly.tex
+	slides only presentation, no notes
+- tutorial??-splitshow.tex
+	for projection of slides + notes, for even and odd pages. 
+	Use afterwards the split script to create two pdfs, to be used with 
+	Skim, to show the notes on the computer display while projecting 
+	the slides.
+- tutorial??-notesonly.tex
+	Show only the notes [I don't think this should be compiled]
+- Commands.tex: 
+	Latex commands used by the tutorial??.tex files
+- BeamerCommands.tex:
+	Beamer specific commands used by the tutorial??.tex files
+- split:
+	Bash script to split up a pdf file; needs pdftk
+- bib files:
+	The bib files necessary for compiling the presentations
+		
+How to Use?
+----------------
+Use 
+$ latexmk -pdf tutorial01-slidesonly
+to get the slides only.
+
+Use 
+$ latexmk -pdf tutorial01-splitshow
+and then
+$ ./split tutorial01-splitshow tutorial01-splitshow.odd.pdf tutorial01-splitshow.even.pdf
+to get the splitshow version.
+
+Change 01 to 02, or 03 depending on which part you want.
+
+Projection of Notes
+------------------------
+For projection use Skim, a Mac based PDF reader.
+
+You need to open up the PDF of your presentation, as well as a second PDF of accompanying notes as the 'Synchronized Notes Document', containing exactly the same number of pages as the presentation. Then, in the presentation PDF, go to 'View' > 'Presentation Options', and in the dropdown for 'Synchronized Notes Document' you will see as an option the filename of the other PDF containing the notes for the presentation. Select that, then make sure you have the window of the presentation PDF on the 'public' monitor (eg a projector, as you would usually do) and the window of the notes document on your private monitor, such as your own laptop. Then simply put the PDF in presentation mode, and the notes PDF will scroll along as you change pages on the presentations PDF. 

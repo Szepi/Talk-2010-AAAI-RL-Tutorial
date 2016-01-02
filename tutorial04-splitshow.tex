@@ -1,0 +1,16 @@
+%\documentclass[serif,mathserif]{beamer}  % For use with beamer v 2.20
+\documentclass[handout,serif,mathserif]{beamer}
+
+%% NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeameroption{show notes}
+
+\usepackage{embedfile}
+\IfFileExists{\jobname.nav}{\embedfile{\jobname.nav}}{}
+% again, optional:
+% just to keep things together
+\embedfile{\jobname.tex}
+%\embedfile{beamerthemeLausanne.sty}
+%\embedfile{SplitShowIcon.png}
+\newcommand{\emptynote}{\note{\mbox{}}}
+\input{tutorial04}
+

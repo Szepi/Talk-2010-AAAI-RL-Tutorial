@@ -1,0 +1,11 @@
+#/bin/bash
+# script for splitting a pdf document into even and odd pages 
+
+# enough arguments?
+if [ $# -ne 3 ]; then
+         echo 1>&2 Usage: split input.pdf oddpages.pdf evenpages.pdf
+         exit 127
+fi
+pdftk A=$1 cat A1-endodd  output $2
+pdftk A=$1 cat A1-endeven output $3
+

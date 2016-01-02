@@ -1,0 +1,334 @@
+%!TEX root = tutorial01-splitshow.tex
+
+
+\usepackage[textwidth=\marginparwidth]{todonotes}
+\usepackage{pdfsync}
+\usepackage{hyperref}
+\usepackage{fancybox}
+
+% For citations
+\newif\ifnumcites
+%\numcitestrue
+\numcitesfalse
+
+
+
+
+% The paper has an extended (long) version and a short version
+\newif\iflong % Sometimes we want to keep two versions; a short and a long one -- this is useful for that..
+%\longfalse
+\longtrue
+
+% Turn on/off notes and descriptions of research problems
+\newif\ifcomm
+%\commfalse % also turns off internal todo comments
+%\commtrue
+
+% Turn on/off internal todo comments
+\newif\iftodo
+\todofalse
+%\todotrue
+
+
+\ifnumcites
+  \usepackage[numbers]{natbib}
+  \bibliographystyle{plainnat}
+\else
+  \usepackage{natbib}
+  \bibliographystyle{apalike}
+\fi
+%\bibliographystyle{apalike}
+% plain, acm, ieeetr, alpha, acm, abbrv, siam
+% plainnat.bst, abbrvnat.bst and unsrtnat.bst
+% http://web.reed.edu/cis/help/LaTeX/bibtexstyles.html
+
+\if0
+\newcommand{\citep}[1]{\cite{#1}}
+\newcommand{\citet}[1]{\cite{#1}}
+\newcommand{\citealt}[1]{\cite{#1}}
+\newcommand{\iftextcite}[1]{}
+
+\newcommand{\npcite}[1]{\cite{#1}}
+\newcommand{\yrcite}[1]{\cite{#1}}
+\fi
+
+
+
+%\usepackage{amsthm}
+
+\usepackage{amssymb}
+%\usepackage[dvips]{graphics}
+\usepackage{amsmath,amsthm,amsfonts} % Learn about the AMS package, again very useful!
+
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+%\usepackage{small-headings}
+
+
+\newif\ifshort
+\iflong
+	\shortfalse
+\else
+	\shorttrue
+\fi
+
+
+% THEOREMS -------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{proofthm}{Proof of Theorem 2}
+
+%\renewtheorem{definition}[thm]{Definition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+%\theoremstyle{remark}
+
+
+\newtheoremstyle{example}% ?name? 
+{3pt}%	?Space above? 
+{3pt}%	?Space below? 
+{\itshape}%	?Body font?
+{}%	?Indent amount?1 
+{}% ?Theorem head font? 
+{:}%	?Punctuation after theorem head? 
+{.5em}%	?Space after theorem head?2 
+{}%
+\theoremstyle{example}
+\newtheorem{ex}{Example}
+%\newtheorem{fact}{Fact}
+\newtheorem{rem}{Remark}
+
+\newcounter{assumption}%[section]
+\newcommand{\theassumptionletter}{A}
+\renewcommand{\theassumption}{\theassumptionletter\arabic{assumption}}
+
+\newenvironment{ass}[1][]{\begin{trivlist}\item[] \refstepcounter{assumption}%
+ {\bf Assumption\ \theassumption\ #1} }{%\par\nobreak\noindent\sl\ignorespaces}{%
+ \ifvmode\smallskip\fi\end{trivlist}}
+\newcommand{\aref}[1]{(\ref{#1})}
+\newenvironment{ass*}[1][]{\begin{trivlist}\item[] %
+ {\bf Assumption\  #1} }{%\par\nobreak\noindent\sl\ignorespaces}{%
+ \ifvmode\smallskip\fi\end{trivlist}}
+
+
+%\newenvironment{remark}
+\newtheorem{remark}{Remark}
+
+%\newenvironment{proof}{{\bf Proof.}}{\hfill\rule{2mm}{2mm}\\}
+
+% Keep whatever you need from here
+
+
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\smallnorm}[1]{\|#1\|}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\supnorm}[1]{\norm{#1}_\infty}
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\cset}[2]{\left\{\,#1\,:\,#2\,\right\}}
+
+\renewcommand{\natural}{\mathbb N}                   % Natural numbers
+\newcommand{\Real}{\mathbb R}                        % Real numbers
+\newcommand{\real}{\mathbb R}                        % again..
+\newcommand{\R}{{\mathbb{R}}}                        % again..
+
+\newcommand{\Prob}[1]{{\mathbb P}\left(#1\right)}    % Probabilities; example: \Prob{X>\eps}<1-\delta
+\renewcommand{\P}{{\mathbb P}}                         % Probabilities when we want to control the parenthesis
+\newcommand{\EE}[1]{{\mathbb E}\left[#1\right]}      % Expectations
+\newcommand{\E}{{\mathbb E}}                         % Expectations  when we want to control the parenthesis
+\newcommand{\Var}[1]{{\mathrm{Var}}\left[#1\right]}  % Variances
+%\newcommand{\one}{\mathbb I}
+\newcommand{\one}[1]{{\mathbb I}_{\{#1\}}}           % Characteristic function
+
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MS}{\mathcal{S}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MC}{\mathcal{C}}
+\newcommand{\MRR}{\mathcal{R}}
+\newcommand{\MD}{\mathcal{D}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MO}{\mathcal{O}}
+\newcommand{\MX}{\mathcal{X}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\hZ}{\hat{Z}}
+\newcommand{\hF}{\hat{F}}
+\newcommand{\hL}{\hat{L}}
+\newcommand{\tL}{\tilde{L}}
+
+\newcommand{\MI}{{\bf I}} %\mathbb{I}}
+
+
+\newcommand{\eps}{\varepsilon}                       % Nice epsilon
+\newcommand{\ep}{\varepsilon}                        % Shorthand for nice epsilon
+\newcommand{\de}{\delta}                             % Shorthand for delta
+\newcommand{\To}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+
+\newcommand{\argmin}{\mathop{\rm argmin}}
+\newcommand{\argmax}{\mathop{\rm argmax}}
+\newcommand{\diag}{\mathop{\rm diag}}
+\newcommand{\inlinemin}{\wedge}
+\newcommand{\inlinemax}{\vee}
+
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\bigip}[2]{\Big\langle #1,#2\Big\rangle}
+\newcommand{\eqdef}{\stackrel{\mbox{\rm\tiny def}}{=}}
+\newcommand{\aP}{{\cal P}}
+
+% Shorthands I use for math environments
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+\newcommand{\beqan}{\begin{eqnarray*}}
+\newcommand{\eeqan}{\end{eqnarray*}}
+\newcommand{\ben}{\begin{eqnarray*}}
+\newcommand{\een}{\end{eqnarray*}}
+
+\newcommand{\RA}{$\Rightarrow$}
+
+\newcommand{\TODO}[2][]{\todo[#1]{#2}}
+
+\iflong
+\else
+	\renewcommand{\note}[2][]{}
+	\renewcommand{\bibnote}[2][]{}
+	\renewcommand{\problem}[2][]{}
+\fi
+
+\ifcomm
+   \newcommand\comm[1]{\textcolor{blue}{ #1}}
+\else
+   \newcommand\comm[1]{}
+%   \renewcommand{\todo}[1]{}
+   \renewcommand{\todo}[2][]{}
+\fi
+
+\iftodo
+\else
+  \renewcommand{\TODO}[2][]{}
+\fi
+
+\newcommand{\remove}[1]{\textcolor{blue}{\sout{#1}}}
+\newcommand{\tO}{\tilde{O}}
+
+% Boldfaced lowercase greek letters as described at
+% http://www.rpi.edu/dept/acs/rpinfo/common/Computing/Consulting/Software/LaTeX/Hints/Greek_Chars.html
+\def\bmath#1{\mbox{\boldmath$#1$}}
+% http://www.ctan.org/tex-archive/info/symbols/comprehensive/symbols-a4.pdf page 68
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+
+\newcommand{\Set}{S}
+\newcommand{\States}{\mathcal{X}}
+\newcommand{\Actions}{\mathcal{A}}
+\newcommand{\TranKernel}{\mathcal{P}}
+\newcommand{\JTranKernel}{\mathcal{P}_{0}}
+\newcommand{\PKernel}{\mathcal{P}}
+\newcommand{\RKernel}{\mathcal{Q}}
+\newcommand{\st}{x}
+\newcommand{\St}{X}
+\renewcommand{\action}{a}
+\newcommand{\nextaction}{a'}
+\newcommand{\Action}{A}
+\newcommand{\Nextaction}{A'}
+\newcommand{\reward}{r}
+\newcommand{\Reward}{R}
+\newcommand{\Ret}{\mathcal{R}}
+\newcommand{\MDP}{\mathcal{M}}
+\newcommand{\nextstate}{y}
+\newcommand{\Nextstate}{Y}
+\newcommand{\rewardfun}{r}
+\newcommand{\TransPOp}{P}
+\newcommand{\id}{I}
+
+\renewcommand{\atop}{^{\top}}
+\newcommand{\SA}{\States\times\Actions}
+
+
+\newcommand{\astate}{z}
+\newcommand{\AStates}{Z}%\State_A}
+\newcommand{\APKernel}{\PKernel_A}
+\newcommand{\rewardrange}{{\mathcal R}}
+\iflong
+\newcommand{\myfootnote}[1]{\footnote{#1}}
+\else
+\newcommand{\myfootnote}[1]{}
+\fi
+\renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\tder}{\nabla_\theta}
+\newcommand{\tders}{\nabla_\theta}
+\newcommand{\pder}{\frac{\partial}{\partial \theta}}
+\newcommand{\pders}{\tfrac{\partial}{\partial \theta}}
+
+
+\newcommand{\pai}{{(i)}}
+\newcommand{\integer}{\mathbb{Z}}
+\newcommand{\cD}{{\cal D}}
+\newcommand{\cZ}{{\cal Z}}
+\newcommand{\cX}{{\cal X}}
+\newcommand{\cW}{{\cal W}}
+
+\newcommand{\cG}{{\cal G}}
+\newcommand{\cF}{{\cal F}}
+\newcommand{\cH}{{\cal H}}
+\renewcommand{\phi}{\varphi}
+\newcommand{\ewithin}{\eps_{\text{W}}}
+\newcommand{\ebetween}{\eps_{\text{B}}}
+\newcommand{\emean}{\eps_{\text{M}}}
+\DeclareMathOperator{\trace}{trace}
+\newcommand{\e}{\mathbf{1}}
+\renewcommand{\eps}{\varepsilon}
+\newcommand{\cM}{{\cal M}}
+\newcommand{\cS}{{\cal S}}
+\newcommand{\tM}{\tilde{M}}
+\newcommand{\MRP}{{\cal M}}
+\newcommand{\kfun}{\mathbb{K}}
+\newcommand{\cK}{{\cal K}}
+
+\newcommand{\aparam}{\omega}
+\newcommand{\dimaction}{d_{\Actions}}
+\newcommand{\dimaparam}{d_{\aparam}}
+\newcommand{\traj}{\xi}
+\newcommand{\Trajset}{\Xi}
+\newcommand{\Traj}{X}
+\newcommand{\perf}{\rho}
+\newcommand{\dstat}{\mu} % stationary distribution underlying a Markov chain
+\newcommand{\Regret}{{\bf R}}
+\renewcommand{\AA}{{\cal A}}
+%\newcommand{\SA}{\States\times\Actions}
+\newcommand{\Sample}{{\cal D}}
+\newcommand{\hA}{\hat{A}}
+\newcommand{\hb}{\hat{b}}
+\newcommand{\ZZ}{{\cal Z}}
+\newcommand{\ttop}{^\top}
+\newcommand{\FF}{{\cal F}}
+\newcommand{\PiStat}{\Pi_{\rm stat}}
+\newcommand{\td}{\delta}
+\newcommand{\hV}{\hat{V}}
+\newcommand{\mynote}[1]{}
+\newcommand{\elg}{z}
+\newcommand{\furtherreading}{}
+\newcommand{\rfun}{\reward}
+\newcommand{\pscorefun}[1]{\frac{\partial \ln \pi_\aparam(#1)}{\partial \aparam}}
+\newcommand{\pscorefunp}[1]{\frac{\partial}{\partial\aparam}\,\log \pi_\aparam(#1)}
+\newcommand{\scorefun}{\psi}
+\newcommand{\hQ}{\hat{Q}}
+\renewcommand{\th}{^{\rm th}}
+\newcommand{\bee}{\begin{enumerate}}
+\newcommand{\eee}{\end{enumerate}}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\algorithmicdownto{\textbf{downto}}

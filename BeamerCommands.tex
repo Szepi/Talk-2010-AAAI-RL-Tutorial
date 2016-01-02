@@ -1,0 +1,116 @@
+%!TEX root = tutorial01-splitshow.tex
+
+\usepackage{wasysym} % for \smiley \frownie
+%
+% \usepackage{wrapfig}
+% \begin{wrapfigure}{POS}{WIDTH}{LINES TO RESERVE}
+% ..
+% \end{wrapfigure}
+% The last argument is optional
+
+% Figures need exact positioning in columns
+% Use the following command to place them
+\newcommand{\figincol}[1]{
+\pgfputat{\pgfxy(0,0)}{\pgfbox[left,top]{#1}}
+}
+
+% ALSO:
+% \pgfputat {\pgfxy(XX,YY)}{\pgfbox[left,base]{#1}}
+% 
+% LL = (0cm,-7cm) 
+% UR = (11cm,1cm)
+%
+% pgfdeclareimage
+% pgfuseimage
+
+\newcommand{\Ra}{\Rightarrow}
+%% BEAMER SPECIFIC COMMANDS
+
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+
+
+\setbeamercolor{math text}{fg=blue!50!normal text.fg}
+\newcommand{\animframe}[2]{\begin{frame}[<+->]{#1}#2\end{frame}}
+\newcommand{\animframesq}[2]{\begin{frame}[<+->][shrink,squeeze]{#1}#2\end{frame}}
+\newcommand{\animframejsq}[2]{\begin{frame}[<+->][squeeze]{#1}#2\end{frame}}
+
+\newcommand{\animframen}[2]{\begin{frame}[<+->]{#1}#2\emptynote\end{frame}}
+\newcommand{\animframesqn}[2]{\begin{frame}[<+->][shrink,squeeze]{#1}#2\emptynote\end{frame}}
+\newcommand{\animframejsqn}[2]{\begin{frame}[<+->][squeeze]{#1}#2\emptynote\end{frame}}
+
+\newcommand{\myframe}[2]{\begin{frame}{#1}#2\end{frame}}
+\newcommand{\myframesq}[2]{\begin{frame}[shrink,squeeze]{#1}#2\end{frame}}
+\newcommand{\myframejsq}[2]{\begin{frame}[squeeze]{#1}#2\end{frame}}
+
+\newcommand{\myframen}[2]{\begin{frame}{#1}#2\emptynote\end{frame}}
+\newcommand{\myframesqn}[2]{\begin{frame}[shrink,squeeze]{#1}#2\emptynote\end{frame}}
+\newcommand{\myframejsqn}[2]{\begin{frame}[squeeze]{#1}#2\emptynote\end{frame}}
+
+
+%\setbeamertemplate{footline}[frame number]
+\newtheorem{Solution}[theorem]{Solution}
+\newtheorem{Comm}[theorem]{Comment}
+\newtheorem{Note}[theorem]{Note}
+
+\newcommand{\bcol}[1][t]{\begin{columns}[#1]} % optional argument: alignment (t,b,c)
+\newcommand{\ecol}{\end{columns}}
+\newcommand{\col}[1][0.5\textwidth]{\column{#1}} % argument: width of the column
+%\parindent = 10pt
+\newcommand{\scaletext}[3]{ % scale-factor original-width TEXT
+\scalebox{#1}{\begin{minipage}[h]{#2\textwidth} #3 \end{minipage}
+}}
+
+% note: beamer slides are 128mm by 96 mm
+\newcommand{\putatUL}[4]{ % width xpos ypos WHAT; upper left corner is put at the said pos
+\begin{textblock*}{#1}[0,0](#2,#3)
+#4
+ \end{textblock*}
+}
+\newcommand{\putatBR}[4]{ % width xpos ypos WHAT; bottom right corner is put at the said pos
+\begin{textblock*}{#1}[1,1](#2,#3)
+#4
+ \end{textblock*}
+}
+\newcommand{\putatBL}[4]{ % width xpos ypos WHAT; bottom left corner is put at the said pos
+\begin{textblock*}{#1}[0,1](#2,#3)
+#4
+ \end{textblock*}
+}
+\newcommand{\putatUR}[4]{ % width xpos ypos WHAT; bottom right corner is put at the said pos
+\begin{textblock*}{#1}[1,0](#2,#3)
+#4
+ \end{textblock*}
+ }
+ \newcommand{\putatMID}[4]{ % width xpos ypos WHAT; bottom right corner is put at the said pos
+\begin{textblock*}{#1}[0.5,0.5](#2,#3)
+#4
+ \end{textblock*}
+ }
+
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}} % xrelpos yrelpos WHAT
+
+\makeatletter
+\newcommand{\insertprevframe}[1]{
+	\def\beamer@origlmargin{\Gm@lmargin}
+%    \vbox{\hfill\insertslideintonotes{0.125}\hskip-\Gm@rmargin\hskip0pt%
+%      \vskip-0.125\paperheight\nointerlineskip}%
+	\insertslideintonotes{#1}
+}
+
+%\newcommand{\insertslideintonotes}[1]{{%
+%  \begin{pgfpicture}{0cm}{0cm}{#1\paperwidth}{#1\paperheight}
+%    \begin{pgflowlevelscope}{\pgftransformscale{#1}}%
+%      \color[gray]{0.8}
+%      \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\paperheight}}
+%      \pgfusepath{fill}
+%      \color{black}
+%      {\pgftransformshift{\pgfpoint{\beamer@origlmargin}{\footheight}}\pgftext[left,bottom]{\copy\beamer@frameboxcopy}}
+%    \end{pgflowlevelscope}
+%  \end{pgfpicture}%
+%  }}
+\makeatother
+% For adding items to the notes pages (we do not want animation there)
+\newcommand{\bin}{\bi[<1->]}

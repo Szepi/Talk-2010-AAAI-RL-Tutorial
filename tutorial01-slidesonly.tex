@@ -1,0 +1,19 @@
+\documentclass[serif,mathserif]{beamer}  % For use with beamer v 2.20
+%\documentclass[handout,serif,mathserif]{beamer}
+
+%% NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeameroption{hide notes} 
+
+\usepackage{embedfile}
+\IfFileExists{\jobname.nav}{\embedfile{\jobname.nav}}{}
+% again, optional:
+% just to keep things together
+\embedfile{\jobname.tex}
+%\embedfile{beamerthemeLausanne.sty}
+%\embedfile{SplitShowIcon.png}
+\newcommand{\emptynote}{\note{\mbox{}}}
+\input{tutorial01}
+
+% Doc: http://sourceforge.net/apps/mediawiki/skim-app/index.php?title=Tips_and_Tricks
+
+% SKIM!! You need to open up the PDF of your presentation, as well as a second PDF of accompanying notes as the 'Synchronized Notes Document', containing exactly the same number of pages as the presentation. Then, in the presentation PDF, go to 'View' > 'Presentation Options', and in the dropdown for 'Synchronized Notes Document' you will see as an option the filename of the other PDF containing the notes for the presentation. Select that, then make sure you have the window of the presentation PDF on the 'public' monitor (eg a projector, as you would usually do) and the window of the notes document on your private monitor, such as your own laptop. Then simply put the PDF in presentation mode, and the notes PDF will scroll along as you change pages on the presentations PDF. 

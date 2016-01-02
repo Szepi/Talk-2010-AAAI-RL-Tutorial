@@ -1,0 +1,263 @@
+%!TEX root = tutorial04-splitshow.tex
+%!TEX root = tutorial04-slidesonly.tex
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% IMPORTANT:
+%% IN ORDER NOTES TO WORK WELL YOU HAVE TO ADD A NOTE TO EACH SLIDE!!!!
+%% That is, at least a \emptynote command must be added to each slide.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\transdissolve
+
+%	\setbeamercolor{postit}{fg=black,bg=yellow}
+%	\begin{beamercolorbox}[sep=1em,wd=5cm]{postit}
+%	Place me somewhere!
+%	\end{beamercolorbox}
+
+
+\usepackage{etex}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{pdfsync, xspace}
+\usepackage{pstricks,pst-node}
+\usepackage{multimedia}
+\usepackage[normal,tight,center]{subfigure}
+\setlength{\subfigcapskip}{-.5em}
+\usefonttheme[onlymath]{serif}
+
+\mode<article> % only for the article version
+{
+  \usepackage{fullpage}
+  \usepackage{hyperref}
+}
+
+
+
+\mode<presentation>
+{
+%  \setbeamertemplate{background canvas}[vertical shading][bottom=red!10,top=blue!10]
+%  \setbeamertemplate{background canvas}
+%  \usetheme{CambridgeUS}
+  \usetheme{Boadilla}
+}
+
+%  There is a VERY rich set of possible
+%  styles of presentations and color themes.  See the
+%  beamer documentation for a full list of possibilities.
+%\usetheme{Warsaw}  % JuanLesPins  Rochester
+%\usetheme{JuanLesPins}
+
+           %  Berkeley  Palo Alto    with sidebar and top
+           % Goettingen  Marburg     with sidebar
+           %  Copenhagen  Luebeck  Warsaw
+%\usecolortheme{lily}
+%\usecolortheme{default}
+%\usecolortheme{crane}
+\usecolortheme{beaver}
+
+
+\usepackage{times}
+\usepackage{multicol}
+\setbeamercovered{dynamic}
+
+%\usepackage{pgfarrows}
+%  Don't need to load the pgf package, but it has
+%  has itself some packages you might want, such as
+%  pgfarrows,,pgfnodes,pgfautomata,pgfheaps
+%  See the pgf documentation.
+
+
+% \beamertemplatetransparentcovereddynamic
+        % overlays that are upcoming are transparent, in
+        % a manner that depends upon how far ahead  they are.
+
+
+% \beamertemplatetransparentcovereddynamic
+        % overlays that are upcoming are transparent, in
+        % a manner that depends upon how far ahead  they are.
+
+%\usepackage{beamerthemesplit}
+%\usepackage{beamerthemebars}
+% beamerthemelined
+% beamerthemetree
+% beamerthemetreebars
+% Note: must be compiled with PDFLatex!!
+
+%\usepackage{graphicx}
+% support for Hungarian
+%\usepackage[magyar]{babel}
+%\usepackage[latin2]{inputenc}
+
+\input{Commands}
+\input{BeamerCommands}
+
+\title[RL Algorithms]{
+Reinforcement Learning Algorithms in Markov Decision Processes\\
+AAAI-10 Tutorial\\
+\mbox{}\\
+Part IV: Take home message
+}
+\author[Szepesv\'ari \& Sutton]{Csaba Szepesv\'ari \and Richard S. Sutton}
+\institute[UofA]{
+University of Alberta\\
+E-mails: {\bf \{szepesva,rsutton\}@.ualberta.ca}\\
+}
+\date[July 11, 2010]{Atlanta, July 11, 2010}
+
+\begin{document}
+
+\frame{
+	\titlepage
+	\putatBL{10mm}{10mm}{66mm}{\includegraphics[width=10mm]{Figures/Szepesvari.jpg}}
+	\putatBR{10mm}{118mm}{66mm}{\includegraphics[width=10mm]{Figures/Sutton}}
+	% 128 x 96 mm
+	\putatMID{20mm}{64mm}{85.5mm}{
+	\includegraphics[width=10mm]{Figures/rlai}
+	\includegraphics[width=10mm]{Figures/UofA-lowRes}
+	}
+	\emptynote
+}
+
+%\maketitle
+\section<presentation>*{Outline}
+
+\begin{frame}
+  \frametitle{Outline}
+  %\scriptsize
+  \tableofcontents[part=1] %,pausesections]
+    \emptynote
+
+\end{frame}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[current,currentsubsection]
+    \emptynote
+  \end{frame}
+}
+
+\part<presentation>{Main Talk}
+
+\section{Main message}
+\animframen{Main message}
+{
+\begin{alertblock}{}
+\bigskip
+Reinforcement learning, building on a simple, yet powerful theory,
+ provides effective solutions to many AI problems.
+\bigskip
+\end{alertblock}
+}
+
+\section{Review}
+\animframen{Concepts}
+{
+\bi
+\item Markov decision processes
+\bi
+\item Generalizes shortest path computations
+\item Stochasticity, state, action, reward, value functions, policies
+\item Bellman (optimality) equations, operators, fixed-points
+\item Value iteration, policy iteration
+\ei
+\item Value prediction
+\bi
+\item Temporal difference learning unifies Monte-Carlo and bootstrapping
+\item Function approximation to deal with large spaces
+\item New gradient based methods %overcome previous limitations
+\item Least-squares methods
+\ei
+\item Control
+\bi
+\item Closed-loop interactive learning: exploration vs. exploitation
+\item $Q$-learning
+\item SARSA
+\item Policy gradient, natural actor-critic
+\ei
+\ei
+}
+
+\section{Literature}
+\animframen{Literature -- books}
+{
+\bi
+\item \citeauthor{KaeLiMo96} -- review 
+ \item \citet{berttsit96} 
+ \item  \citet{SuBa98} 
+ \item \citet{Ber07:DPbookVol1,Ber07:DPbookVol2}
+ \item \citet{Ber10:DPbookVol2Ch6} -- 160 pages!
+\item \cite{Gosavi03} 
+\item  \citet{Cao07} -- policy gradient methods
+\item 
+\citet{Powell07} -- operations research perspective 
+\item 
+\citet{ChaFuHuMa08} f--  adaptive sampling (i.e., simulation-based performance optimization)
+\item  \citet{BuBaSchEr10:RLFapp} -- function approximation
+\item \citet{Sze10} -- concise, algorithms, ideas (the latest, $\ldots$)
+	\putatUR{30mm}{118mm}{15mm}{
+	\includegraphics[width=30mm]<.->{Figures/Csaba-book-cover.jpg}
+	}
+\ei
+}
+
+\animframen{Literature -- II}
+{
+\bi
+\item Conferences
+\bi
+\item ICML
+\item NIPS
+\item UAI, AAAI, IJCAI, COLT, ALT, ..
+\ei
+\item Journals
+\bi
+\item MLJ
+\item JMLR
+\item IEEE TAC
+\item MOR
+\item NN, Neurocomputing, IEEE TNN
+\ei
+\ei
+}
+
+\section{Software}
+\animframen{Software}
+{
+\bi
+ \item {\sc RL-Glue}: \url{http://glue.rl-community.org}
+ \item  {\sc RL-Library}: \url{http://library.rl-community.org}
+ \item   CLSquare -- {\url{http://www.ni.uos.de/index.php?id=70}}
+ \item PIQLE -- {\url{http://piqle.sourceforge.net/}}
+ \item  RL Toolbox -- {\url{http://www.igi.tugraz.at/ril-toolbox/}}
+ \item  JRLF -- {\url{http://mykel.kochenderfer.com/?page_id=19}} 
+ \item  LibPG -- {\url{http://code.google.com/p/libpgrl/}}
+\ei
+}
+
+\section{.. and beyond}
+\animframen{.. and beyond}
+{
+\bi
+\item What if the state is not observable?
+\item Abstractions: time!?
+\item Knowledge representation (and value functions)
+\item Automated basis construction, regularization, $\ldots$
+\item Beyond the probabilistic framework
+\ei
+}
+
+\section{Bibliography}
+\begin{frame}
+  \frametitle{For Further Reading}
+  \begin{multicols}{2}
+  \scriptsize\tiny
+\def\newblock{\hskip .11em plus .33em minus .07em}
+\bibliography{allbib,shortconfs}
+  \end{multicols}
+\emptynote
+\end{frame}
+
+\end{document}
